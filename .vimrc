@@ -1,23 +1,26 @@
-call plug#begin('~/.local/share/nvim/plugged')
+call plug#begin()
 
 Plug 'itchyny/lightline.vim'
 Plug 'preservim/nerdtree'
-Plug 'vimwiki/vimwiki'
+Plug 'vimwiki/vimwiki', {'branch': 'dev'}
 Plug 'sainnhe/edge'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'michal-h21/vim-zettel'
 
 call plug#end()
 
 " Mandatory for vimwiki
 " Disable vi compatible mode
 set nocompatible
-filetype plugin on
+filetype plugin indent on
 syntax enable
 
 " Show line numbers on the left
 set number
 " Line numbers are relative
 set relativenumber
-
+        
 " tab is 4 whitespaces long
 set tabstop=4
 " tab expand to spaces
@@ -43,6 +46,15 @@ colorscheme edge
 
 let g:lightline = {'colorscheme' : 'edge'}
 
-" Set vimiwiki syntax to markdown
+nnoremap <leader>s :Ag<space>
+
+" Vimwiki + Zettel config
+let g:vimwiki_markdown_link_ext = 1
 let g:vimwiki_list = [{'path': '~/vimwiki/',
                         \ 'syntax': 'markdown', 'ext': '.md'}]
+
+let g:zettel_options = [{"template" :  "~/Templates/base.tpl"}]
+let g:zettel_format = '%Y%m%d%H%M%S'
+
+nnoremap <leader>zn :ZettelNew<space>
+nnoremap <leader>zs :ZettelSearch<space>
